@@ -26,11 +26,19 @@
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		private void InitializeComponent()
+        private void InitializeComponent()
         {
             this.buttonBrowse = new System.Windows.Forms.Button();
             this.InputPath = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.btnSelectInputFolder = new System.Windows.Forms.Button();
+            this.txtInputFolder = new System.Windows.Forms.TextBox();
+            this.btnSelectOutputFolder = new System.Windows.Forms.Button();
+            this.txtOutputFolder = new System.Windows.Forms.TextBox();
+            this.btnConvertFolder = new System.Windows.Forms.Button();
+            this.progressBarBatch = new System.Windows.Forms.ProgressBar();
+            this.lblBatchStatus = new System.Windows.Forms.Label();
+            this.txtBatchLog = new System.Windows.Forms.TextBox();
             this.radioButtonPNG = new System.Windows.Forms.RadioButton();
             this.radioButtonICO = new System.Windows.Forms.RadioButton();
             this.checkBoxTransparent = new System.Windows.Forms.CheckBox();
@@ -74,6 +82,84 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
+            // 
+            // btnSelectInputFolder
+            // 
+            this.btnSelectInputFolder.Font = new System.Drawing.Font("Century", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectInputFolder.Location = new System.Drawing.Point(12, 262);
+            this.btnSelectInputFolder.Name = "btnSelectInputFolder";
+            this.btnSelectInputFolder.Size = new System.Drawing.Size(149, 30);
+            this.btnSelectInputFolder.TabIndex = 9;
+            this.btnSelectInputFolder.Text = "Input Folder";
+            this.btnSelectInputFolder.UseVisualStyleBackColor = true;
+            this.btnSelectInputFolder.Click += new System.EventHandler(this.BtnSelectInputFolder_Click);
+            // 
+            // txtInputFolder
+            // 
+            this.txtInputFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInputFolder.Location = new System.Drawing.Point(165, 264);
+            this.txtInputFolder.Name = "txtInputFolder";
+            this.txtInputFolder.ReadOnly = true;
+            this.txtInputFolder.Size = new System.Drawing.Size(578, 28);
+            this.txtInputFolder.TabIndex = 10;
+            // 
+            // btnSelectOutputFolder
+            // 
+            this.btnSelectOutputFolder.Font = new System.Drawing.Font("Century", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectOutputFolder.Location = new System.Drawing.Point(12, 298);
+            this.btnSelectOutputFolder.Name = "btnSelectOutputFolder";
+            this.btnSelectOutputFolder.Size = new System.Drawing.Size(149, 30);
+            this.btnSelectOutputFolder.TabIndex = 11;
+            this.btnSelectOutputFolder.Text = "Output Folder";
+            this.btnSelectOutputFolder.UseVisualStyleBackColor = true;
+            this.btnSelectOutputFolder.Click += new System.EventHandler(this.BtnSelectOutputFolder_Click);
+            // 
+            // txtOutputFolder
+            // 
+            this.txtOutputFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOutputFolder.Location = new System.Drawing.Point(165, 300);
+            this.txtOutputFolder.Name = "txtOutputFolder";
+            this.txtOutputFolder.ReadOnly = true;
+            this.txtOutputFolder.Size = new System.Drawing.Size(578, 28);
+            this.txtOutputFolder.TabIndex = 12;
+            // 
+            // btnConvertFolder
+            // 
+            this.btnConvertFolder.Font = new System.Drawing.Font("Century", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConvertFolder.Location = new System.Drawing.Point(12, 334);
+            this.btnConvertFolder.Name = "btnConvertFolder";
+            this.btnConvertFolder.Size = new System.Drawing.Size(149, 30);
+            this.btnConvertFolder.TabIndex = 13;
+            this.btnConvertFolder.Text = "Convert Folder";
+            this.btnConvertFolder.UseVisualStyleBackColor = true;
+            this.btnConvertFolder.Click += new System.EventHandler(this.BtnConvertFolder_Click);
+            // 
+            // progressBarBatch
+            // 
+            this.progressBarBatch.Location = new System.Drawing.Point(165, 334);
+            this.progressBarBatch.Name = "progressBarBatch";
+            this.progressBarBatch.Size = new System.Drawing.Size(578, 23);
+            this.progressBarBatch.TabIndex = 14;
+            // 
+            // lblBatchStatus
+            // 
+            this.lblBatchStatus.AutoSize = true;
+            this.lblBatchStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBatchStatus.Location = new System.Drawing.Point(165, 360);
+            this.lblBatchStatus.Name = "lblBatchStatus";
+            this.lblBatchStatus.Size = new System.Drawing.Size(0, 18);
+            this.lblBatchStatus.TabIndex = 15;
+            // 
+            // txtBatchLog
+            // 
+            this.txtBatchLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBatchLog.Location = new System.Drawing.Point(12, 385);
+            this.txtBatchLog.Multiline = true;
+            this.txtBatchLog.Name = "txtBatchLog";
+            this.txtBatchLog.ReadOnly = true;
+            this.txtBatchLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtBatchLog.Size = new System.Drawing.Size(731, 120);
+            this.txtBatchLog.TabIndex = 16;
             // 
             // radioButtonPNG
             // 
@@ -287,7 +373,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 262);
+            this.ClientSize = new System.Drawing.Size(755, 517);
+            this.Controls.Add(this.txtBatchLog);
+            this.Controls.Add(this.lblBatchStatus);
+            this.Controls.Add(this.progressBarBatch);
+            this.Controls.Add(this.btnConvertFolder);
+            this.Controls.Add(this.txtOutputFolder);
+            this.Controls.Add(this.btnSelectOutputFolder);
+            this.Controls.Add(this.txtInputFolder);
+            this.Controls.Add(this.btnSelectInputFolder);
             this.Controls.Add(this.labelDone);
             this.Controls.Add(this.OutputPath);
             this.Controls.Add(this.buttonConvert);
@@ -331,6 +425,13 @@
         private System.Windows.Forms.Button buttonConvert;
         private System.Windows.Forms.Label OutputPath;
         private System.Windows.Forms.Label labelDone;
+        private System.Windows.Forms.Button btnSelectInputFolder;
+        private System.Windows.Forms.TextBox txtInputFolder;
+        private System.Windows.Forms.Button btnSelectOutputFolder;
+        private System.Windows.Forms.TextBox txtOutputFolder;
+        private System.Windows.Forms.Button btnConvertFolder;
+        private System.Windows.Forms.ProgressBar progressBarBatch;
+        private System.Windows.Forms.Label lblBatchStatus;
+        private System.Windows.Forms.TextBox txtBatchLog;
     }
 }
-
